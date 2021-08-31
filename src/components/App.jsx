@@ -15,7 +15,7 @@ export default function App() {
 
   useEffect(() => {
     const saveState = JSON.parse(window.localStorage.getItem("contacts"));
-    setContacts(saveState);
+    if (saveState) setContacts(saveState);
   }, []);
 
   useEffect(() => {
@@ -38,12 +38,12 @@ export default function App() {
   };
 
   const deleteContact = (id) => {
-    setContacts(contacts.filter((contact) => contact.id !== id));
+    setContacts(contacts?.filter((contact) => contact.id !== id));
   };
 
   const newContactsFilter = () => {
-    const normalFilter = filter.toLowerCase();
-    return contacts.filter((contact) =>
+    const normalFilter = filter?.toLowerCase();
+    return contacts?.filter((contact) =>
       contact.name.toLowerCase().includes(normalFilter)
     );
   };
